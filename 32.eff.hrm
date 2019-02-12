@@ -1,0 +1,24 @@
+-- HUMAN RESOURCE MACHINE PROGRAM --
+
+begin:
+  INBOX   
+  COPYTO   15
+  COPYFROM 14
+  COPYTO   16
+  COPYTO   17
+loop:
+  COPYFROM [17]
+  JUMPZ    eof
+  SUB      15
+  JUMPZ    eq
+  BUMPUP   17
+  JUMP     loop
+eq:
+  BUMPUP   16
+  BUMPUP   17
+  JUMP     loop
+
+eof:
+  COPYFROM 16
+  OUTBOX  
+  JUMP     begin

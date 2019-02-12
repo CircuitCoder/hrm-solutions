@@ -1,0 +1,57 @@
+-- HUMAN RESOURCE MACHINE PROGRAM --
+
+  COPYFROM 24
+  COPYTO 23
+  BUMPUP 23
+  BUMPUP 23
+
+begin:
+  INBOX
+  COPYTO 0
+  COPYFROM 23
+  COPYTO 20
+
+divstart:
+  COPYFROM 24
+  COPYTO 2
+
+  COPYFROM 0
+divloop:
+  SUB 20
+  JUMPN negative
+  JUMPZ zero
+  COPYTO 1
+  BUMPUP 2
+  COPYFROM 1
+  SUB 20
+  JUMPN negative
+  JUMPZ zero
+  COPYTO 1
+  BUMPUP 2
+  COPYFROM 1
+  SUB 20
+  JUMPN negative
+  JUMPZ zero
+  COPYTO 1
+  BUMPUP 2
+  COPYFROM 1
+  SUB 20
+  JUMPN negative
+  JUMPZ zero
+  COPYTO 1
+  BUMPUP 2
+  COPYFROM 1
+  JUMP divloop
+
+negative:
+  BUMPUP 20
+  JUMP divstart
+
+zero:
+  COPYFROM 20
+  OUTBOX
+  BUMPUP 2
+  COPYTO 0
+  SUB 23
+  JUMPN begin
+  JUMP divstart

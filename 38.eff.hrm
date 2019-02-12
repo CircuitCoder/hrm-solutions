@@ -1,0 +1,143 @@
+-- HRM --
+begin:
+  COPYFROM 9
+  COPYTO 6
+  COPYTO 7
+
+  INBOX
+  COPYTO 0
+
+-- hund
+
+  SUB 11
+  JUMPN bumphundzero
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundone
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundtwo
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundthree
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundfour
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundfive
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundsix
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundseven
+  COPYTO 0
+
+  SUB 11
+  JUMPN bumphundeight
+  COPYTO 0
+
+-- Bump nine
+  BUMPUP 6
+bumphundeight:
+  BUMPUP 6
+bumphundseven:
+  BUMPUP 6
+bumphundsix:
+  BUMPUP 6
+bumphundfive:
+  BUMPUP 6
+bumphundfour:
+  BUMPUP 6
+bumphundthree:
+  BUMPUP 6
+bumphundtwo:
+  BUMPUP 6
+bumphundone:
+  BUMPUP 6
+bumphundzero:
+
+-- ten
+  COPYFROM 0
+
+  SUB 10
+  JUMPN bumptenzero
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumptenone
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumptentwo
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumptenthree
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumptenfour
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumptenfive
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumptensix
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumptenseven
+  COPYTO 0
+
+  SUB 10
+  JUMPN bumpteneight
+  COPYTO 0
+
+-- Bump nine
+  BUMPUP 7
+bumpteneight:
+  BUMPUP 7
+bumptenseven:
+  BUMPUP 7
+bumptensix:
+  BUMPUP 7
+bumptenfive:
+  BUMPUP 7
+bumptenfour:
+  BUMPUP 7
+bumptenthree:
+  BUMPUP 7
+bumptentwo:
+  BUMPUP 7
+bumptenone:
+  BUMPUP 7
+bumptenzero:
+
+  COPYFROM 6
+  JUMPZ mayskip
+  OUTBOX
+  COPYFROM 7
+  OUTBOX
+  COPYFROM 0
+  OUTBOX
+  JUMP begin
+
+mayskip:
+  COPYFROM 7
+  JUMPZ single
+  OUTBOX
+single:
+  COPYFROM 0
+  OUTBOX
+  JUMP begin

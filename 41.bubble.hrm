@@ -1,0 +1,54 @@
+-- HRM 41 --
+
+start:
+  COPYFROM 24
+  COPYTO 20
+  BUMPDN 20
+
+restart:
+  BUMPUP 20
+
+input:
+  INBOX
+  JUMPZ sort
+  COPYTO [20]
+  BUMPUP 20
+  JUMP input
+
+sort:
+  BUMPDN 20
+
+outer:
+  JUMPN restart
+
+  COPYFROM 24
+  COPYTO 22
+  COPYTO 23
+  BUMPUP 23
+inner:
+
+  COPYFROM 22
+  SUB 20
+  JUMPZ break
+
+  COPYFROM [23]
+  SUB [22]
+
+  JUMPN skipswap
+  COPYFROM [22]
+  COPYTO 15
+  COPYFROM [23]
+  COPYTO [22]
+  COPYFROM 15
+  COPYTO [23]
+skipswap:
+
+  BUMPUP 23
+  BUMPUP 22
+  JUMP inner
+break:
+
+  COPYFROM [20]
+  OUTBOX
+  BUMPDN 20
+  JUMP outer

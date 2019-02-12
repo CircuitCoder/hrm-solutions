@@ -1,0 +1,58 @@
+-- HUMAN RESOURCE MACHINE PROGRAM --
+
+  COPYFROM 23
+  COPYTO   20
+  COPYFROM 24
+  COPYTO   21
+
+inputfirst:
+  INBOX   
+  COPYTO   [20]
+  JUMPZ    inputsecond 
+  BUMPUP   20
+  JUMP     inputfirst
+inputsecond:
+  INBOX   
+  COPYTO   [21]
+  JUMPZ    inputend
+  BUMPUP   21
+  JUMP     inputsecond
+inputend:
+
+  COPYFROM 23
+  COPYTO   20
+  COPYFROM 24
+  COPYTO   21
+cmploop:
+  COPYFROM [21]
+  JUMPZ    outputsecond
+  COPYFROM [20]
+  JUMPZ    outputfirst
+  SUB      [21]
+  JUMPZ    next
+  JUMPN    outputfirst
+  JUMP     outputsecond
+next:
+  BUMPUP   20
+  BUMPUP   21
+  JUMP     cmploop
+
+outputfirst:
+  COPYFROM 23
+  COPYTO 20
+  JUMP output
+outputsecond:
+  COPYFROM 24
+  COPYTO 20
+output:
+  COPYFROM [20]
+  JUMPZ end
+  OUTBOX
+  BUMPUP 20
+  COPYFROM [20]
+  JUMPZ end
+  OUTBOX
+  BUMPUP 20
+  JUMP output
+
+end:

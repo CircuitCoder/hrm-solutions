@@ -1,0 +1,49 @@
+-- HRM --
+
+begin:
+  INBOX
+  JUMPZ zeroa
+  COPYTO 1
+  INBOX
+  JUMPZ zero
+  COPYTO 0
+
+  SUB 1
+  
+  JUMPN skip
+
+  COPYTO 0
+  ADD 1
+  COPYTO 1
+  SUB 0
+  COPYTO 0
+
+skip:
+  COPYFROM 1
+  COPYTO 2
+
+loop:
+  BUMPDN 0
+  JUMPZ output
+  COPYFROM 1
+  ADD 2
+  COPYTO 2
+
+  BUMPDN 0
+  JUMPZ output
+  COPYFROM 1
+  ADD 2
+  COPYTO 2
+  JUMP loop
+
+output:
+  COPYFROM 2
+  OUTBOX
+  JUMP begin
+
+zeroa:
+  INBOX
+zero:
+  COPYFROM 9
+  OUTBOX
+  JUMP begin

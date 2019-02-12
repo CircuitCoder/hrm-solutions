@@ -1,0 +1,49 @@
+-- HRM 41 --
+
+restart:
+  INBOX
+  COPYTO 0
+
+  COPYFROM 24
+  COPYTO 20
+  BUMPUP 20
+
+outer:
+  INBOX
+  JUMPZ flush
+  COPYTO 19
+
+  COPYFROM 20
+  COPYTO 21
+  COPYTO 22
+  BUMPDN 21
+
+inner:
+  COPYFROM 19
+  SUB [21]
+  JUMPN continue
+base:
+  COPYFROM 19
+  COPYTO [22]
+  BUMPUP 20
+  JUMP outer
+
+continue:
+  COPYFROM [21]
+  COPYTO [22]
+  BUMPDN 22
+  BUMPDN 21
+  JUMPN base
+  JUMP inner
+
+flush:
+  COPYFROM 24
+  COPYTO 21
+
+flushloop:
+  COPYFROM [21]
+  OUTBOX
+  BUMPUP 21
+  SUB 20
+  JUMPZ restart
+  JUMP flushloop

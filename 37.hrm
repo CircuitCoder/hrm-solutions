@@ -1,0 +1,12 @@
+-- HUMAN RESOURCE MACHINE PROGRAM --
+
+begin:
+      INBOX   
+loop:
+      COPYTO   12
+      COPYFROM [12]
+      OUTBOX  
+      BUMPUP   12
+      COPYFROM [12]
+      JUMPN    begin
+      JUMP     loop
